@@ -38,8 +38,6 @@
     opacity: 1;
 }
 
-
-
 .box-content {
     position: absolute;
     padding: 10px;
@@ -49,6 +47,15 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     font-size: 12px;
+    color:black;
+}
+
+.light-text {
+    color: white;
+}
+
+.ColorBox .dark-text {
+    color: rgba(0,0,0,0.6);
 }
 
 .see-more {
@@ -129,5 +136,4 @@
 
 .ColorBox.Back {
     background-color: black;
-
 }
