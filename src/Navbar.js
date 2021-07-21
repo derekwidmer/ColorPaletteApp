@@ -23,7 +23,7 @@ export default class Navbar extends Component {
         this.setState({ open: false })
     }
     render() {
-        const { level, changeLevel, handleChange } = this.props;
+        const { level, changeLevel } = this.props;
         const { format } = this.state;
         return (
             <header className="Navbar">
