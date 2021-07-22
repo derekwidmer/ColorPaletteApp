@@ -58,7 +58,7 @@
     color: rgba(0,0,0,0.6);
 }
 
-.see-more {
+/* .see-more {
     background: rgba(255,255,255,0.3);
     position: absolute;
     border: none;
@@ -70,7 +70,7 @@
     text-align: center;
     line-height: 30px;
     text-transform: uppercase;
-}
+} */
 
 .copy-overlay {
     opacity: 0;
