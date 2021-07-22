@@ -70,11 +70,11 @@ export default {
         width: "100%",
         height: "100%",
         transition: "transform 0.5s ease-in-out",
-        transform: "scale(0.1)",
+        transform: "scale(0.001)",
     },
     showOverlay: {
         opacity: "1",
-        transform: "scale(20)",
+        transform: "scale(50)",
         zIndex: "10",
         position: "absolute",
     },
