@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import chroma from 'chroma-js'
 import { withStyles } from '@material-ui/styles'
 import './ColorBox.css'
-import { white } from 'jest-matcher-utils/node_modules/chalk';
 
 const styles = {
     ColorBox: {
