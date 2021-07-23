@@ -8,6 +8,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/styles'
 import styles from './styles/NavbarStyles'
+import { Link } from 'react-router-dom'
 
 class Navbar extends Component {
     constructor(props) {
@@ -29,7 +30,7 @@ class Navbar extends Component {
         return (
             <header className={classes.Navbar}>
                 <div className={classes.logo}>
-                    <a href="/">ReactColorPicker</a>
+                    <Link exact to="/">ReactColorPicker</Link>
                 </div>
                 {showingAllColors && (
                     <div>

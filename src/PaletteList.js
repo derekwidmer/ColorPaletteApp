@@ -15,11 +15,11 @@ class PaletteList extends Component {
                 <div className={classes.container}>
                     <nav className={classes.nav}>
                         <h1>React Colors</h1>
-                        <Link exact to="/palette/new">Create New Palette</Link>
+                        <Link exact="true" to="/palette/new" >Create New Palette</Link>
                     </nav>
                     <div className={classes.palettes}>
                         {palettes.map(palette => (
-                            <MiniPalette {...palette} handleClick={() => this.goToPalette(palette.id)} />
+                            <MiniPalette {...palette} handleClick={() => this.goToPalette(palette.id)} key={palette.id} />
                         ))}
                     </div>
                 </div>
