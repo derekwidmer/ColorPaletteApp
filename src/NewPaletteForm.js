@@ -76,11 +76,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function NewPaletteForm() {
+export default function NewPaletteForm(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const [currentColor, setColor] = React.useState({ "hsl": { "h": 180, "s": 0.5625, "l": 0.4486464646464647, "a": 1 }, "hex": "#32b3b3", "rgb": { "r": 50, "g": 179, "b": 179, "a": 1 }, "hsv": { "h": 180, "s": 0.7200000000000001, "v": 0.7010101010101011, "a": 1 }, "oldHue": 180, "source": "rgb" });
-    const [colors, setNewColor] = React.useState([])
+    const [currentColor, setColor] = React.useState("teal");
+    const [colors, updateColors] = React.useState([])
     const [newName, setName] = React.useState("")
 
     const handleDrawerOpen = () => {
@@ -92,12 +92,17 @@ export default function NewPaletteForm() {
     };
 
     function addNewColor() {
-        let newColor = {
-            ...currentColor, name: newName
-        }
-        setNewColor(oldColors => [...oldColors, newColor]);
+        let newColor = { color: currentColor, name: newName }
+        updateColors(oldColors => [...oldColors, newColor]);
         setName("");
     };
+
+    function savePalette() {
+        let newName = "New Test Palette"
+        const newPalette = { paletteName: newName, colors, id: newName.toLowerCase().replace(/ /g, "-") }
+        props.savePalette(newPalette);
+        props.history.push('/');
+    }
 
     React.useEffect(() => {
         ValidatorForm.addValidationRule("isColorNameUnique", value => {
@@ -107,8 +112,8 @@ export default function NewPaletteForm() {
         });
         ValidatorForm.addValidationRule("isColorUnique", value => {
             return colors.every(
-                ({ hex }) =>
-                    hex.toLowerCase() !== currentColor.hex.toLowerCase()
+                ({ color }) =>
+                    color.toLowerCase() !== currentColor.toLowerCase()
             );
         });
     });
@@ -118,6 +123,7 @@ export default function NewPaletteForm() {
             <CssBaseline />
             <AppBar
                 position="fixed"
+                color="default"
                 className={clsx(classes.appBar, {
                     [classes.appBarShift]: open,
                 })}
@@ -135,6 +141,13 @@ export default function NewPaletteForm() {
                     <Typography variant="h6" noWrap>
                         Persistent drawer
                     </Typography>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={savePalette}
+                    >
+                        Save Palette
+                    </Button>
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -159,7 +172,7 @@ export default function NewPaletteForm() {
                 </div>
                 <ChromePicker
                     color={currentColor}
-                    onChangeComplete={(newColor) => { setColor(newColor) }}
+                    onChangeComplete={(newColor) => { setColor(newColor.hex) }}
                 />
                 <ValidatorForm onSubmit={addNewColor}>
                     <TextValidator
@@ -171,7 +184,7 @@ export default function NewPaletteForm() {
                     <Button
                         variant="contained"
                         color="primary"
-                        style={{ backgroundColor: currentColor.hex }}
+                        style={{ backgroundColor: currentColor }}
                         type="submit"
                     >Add Color
                     </Button>
