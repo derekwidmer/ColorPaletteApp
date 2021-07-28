@@ -215,7 +215,7 @@ export default function NewPaletteForm(props) {
                 })}
             >
                 <div className={classes.drawerHeader} />
-                {colors.map(color => (<DraggableColorBox color={color} />))}
+                {colors.map(color => (<DraggableColorBox {...color} />))}
             </main>
         </div >
     );
