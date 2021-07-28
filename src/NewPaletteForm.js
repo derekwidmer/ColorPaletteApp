@@ -16,7 +16,7 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
 import DraggableColorList from './DraggableColorList';
 import { arrayMove } from 'react-sortable-hoc';
 
-const drawerWidth = 400;
+const drawerWidth = 450;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     content: {
         flexGrow: 1,
         height: "calc(100vh - 64px)",
-        // padding: theme.spacing(3),
+        padding: theme.spacing(3),
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
@@ -77,13 +77,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function NewPaletteForm(props) {
+export default function NewPaletteForm(props, { maxColors = 20 }) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [currentColor, setColor] = React.useState("teal");
-    const [colors, updateColors] = React.useState([])
+    const [colors, updateColors] = React.useState([...props.palettes[0].colors])
     const [newColorName, setName] = React.useState("")
     const [newPaletteName, setPaletteName] = React.useState("")
+
+    const paletteFull = colors.length >= maxColors;
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -114,6 +116,17 @@ export default function NewPaletteForm(props) {
         updateColors(oldColors => arrayMove(oldColors, oldIndex, newIndex))
     }
 
+    function clearColors() {
+        updateColors([])
+    }
+
+    function addRandColor() {
+        const allColors = props.palettes.map(p => p.colors).flat();
+        let rand = Math.floor(Math.random() * allColors.length)
+        const newColor = allColors[rand]
+        updateColors(oldColors => [...oldColors, newColor])
+    }
+
     React.useEffect(() => {
         ValidatorForm.addValidationRule("isColorNameUnique", value => {
             return colors.every(
@@ -133,7 +146,6 @@ export default function NewPaletteForm(props) {
             );
         });
     });
-
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -194,8 +206,15 @@ export default function NewPaletteForm(props) {
                 <Divider />
                 <Typography variant="h4">Design Your Palette</Typography>
                 <div>
-                    <Button variant="contained" color="secondary">Clear Palette</Button>
-                    <Button variant="contained" color="primary">Random Color</Button>
+                    <Button variant="contained" color="secondary" onClick={clearColors}>Clear Palette</Button>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={addRandColor}
+                        disabled={paletteFull}
+                    >
+                        {paletteFull ? 'Palette Full' : 'Random Color'}
+                    </Button>
                 </div>
                 <ChromePicker
                     color={currentColor}
@@ -212,9 +231,11 @@ export default function NewPaletteForm(props) {
                     <Button
                         variant="contained"
                         color="primary"
-                        style={{ backgroundColor: currentColor }}
+                        style={{ backgroundColor: paletteFull ? 'gray' : currentColor }}
                         type="submit"
-                    >Add Color
+                        disabled={paletteFull}
+                    >
+                        {paletteFull ? 'Palette Full' : 'Add Color'}
                     </Button>
                 </ValidatorForm>
             </Drawer>

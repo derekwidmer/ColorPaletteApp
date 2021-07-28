@@ -28,7 +28,8 @@ const styles = {
         width: "100%",
         display: "grid",
         gridTemplateColumns: "repeat(3, 30%)",
-        gridGap: "5%"
+        gridGap: "5%",
+        height: "100%"
     }
 }
 export default styles;
