@@ -2,11 +2,29 @@ import React from 'react';
 import Button from '@material-ui/core/Button'
 import { ChromePicker } from 'react-color'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles((theme) => ({
+    picker: {
+        width: "100% !important",
+        marginTop: "2rem"
+    },
+    addColor: {
+        width: "100%",
+        padding: "1rem",
+        marginTop: "1rem",
+        fontSize: "2rem"
+    },
+    input: {
+        width: "100%",
+        height: "70px",
+    }
+
+
+}));
 
 export default function ColorPickerForm({ paletteFull, updateColors, colors }) {
-
+    const classes = useStyles();
     const [currentColor, setColor] = React.useState("teal");
     const [newColorName, setName] = React.useState("")
 
@@ -35,9 +53,14 @@ export default function ColorPickerForm({ paletteFull, updateColors, colors }) {
             <ChromePicker
                 color={currentColor}
                 onChangeComplete={(newColor) => { setColor(newColor.hex) }}
+                className={classes.picker}
             />
             <ValidatorForm onSubmit={addNewColor}>
                 <TextValidator
+                    className={classes.input}
+                    variant="filled"
+                    margin="normal"
+                    placeholder="Color Name"
                     value={newColorName}
                     name={newColorName}
                     onChange={(evt) => setName(evt.target.value)}
@@ -45,6 +68,7 @@ export default function ColorPickerForm({ paletteFull, updateColors, colors }) {
                     errorMessages={['Color name required', 'Color name must be unique', 'Color must be unique']}
                 />
                 <Button
+                    className={classes.addColor}
                     variant="contained"
                     color="primary"
                     style={{ backgroundColor: paletteFull ? 'gray' : currentColor }}
