@@ -105,6 +105,10 @@ export default function NewPaletteForm(props) {
         props.history.push('/');
     }
 
+    function deleteColor(deleteName) {
+        updateColors(oldColors => [...oldColors.filter(color => color.name !== deleteName)])
+    }
+
     React.useEffect(() => {
         ValidatorForm.addValidationRule("isColorNameUnique", value => {
             return colors.every(
@@ -215,7 +219,7 @@ export default function NewPaletteForm(props) {
                 })}
             >
                 <div className={classes.drawerHeader} />
-                {colors.map(color => (<DraggableColorBox {...color} />))}
+                {colors.map(color => (<DraggableColorBox {...color} handleClick={() => deleteColor(color.name)} key={color.name} />))}
             </main>
         </div >
     );
