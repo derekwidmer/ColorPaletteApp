@@ -116,7 +116,6 @@ export default function NewPaletteForm(props, { maxColors = 20 }) {
     return (
         <div className={classes.root}>
             <PaletteFormNav
-                classes={classes}
                 open={open}
                 palettes={props.palettes}
                 handleSubmit={handleSubmit}
