@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
         }),
         flexDirection: "row",
         justifyContent: "space-between",
+        alignItems: "center",
         height: "64px"
     },
     appBarShift: {
@@ -38,12 +39,24 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(2),
     },
     navButtons: {
-        display: "flex"
+        marginRight: "1rem",
+        alignItems: "center"
+    },
+    button: {
+        margin: "0 0.5rem",
+    },
+    link: {
+        textDecoration: "none"
     }
 }));
 
 export default function PaletteFormNav({ open, handleSubmit, palettes, handleDrawerOpen }) {
     const classes = useStyles();
+    const [formShowing, updateFormShowing] = React.useState(false)
+
+    const showForm = () => {
+        updateFormShowing(!formShowing)
+    }
 
     return (
         <div className={classes.root}>
@@ -70,11 +83,18 @@ export default function PaletteFormNav({ open, handleSubmit, palettes, handleDra
                     </Typography>
                 </Toolbar>
                 <div className={classes.navButtons}>
-                    <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} />
-                    <Link to="/"><Button variant="contained" color="secondary">Go Back</Button></Link>
+                    <Button
+                        className={classes.button}
+                        variant="contained"
+                        color="primary"
+                        onClick={showForm}
+                    >
+                        Save Palette
+                    </Button>
+                    <Link to="/" className={classes.link}><Button variant="contained" color="secondary" className={classes.button}>Go Back</Button></Link>
                 </div>
-
             </AppBar>
+            {!formShowing && <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} />}
         </div>
     )
 }
