@@ -95,11 +95,6 @@ class PaletteFormNav extends Component {
                         </Typography>
                     </Toolbar>
                     <div className={classes.navBtns}>
-                        <Link to="/">
-                            <Button variant="contained" color="secondary" className={classes.buttonNav}>
-                                Go Back
-                            </Button>
-                        </Link>
                         <Button
                             variant="contained"
                             color="primary"
@@ -108,6 +103,11 @@ class PaletteFormNav extends Component {
                         >
                             Save
                         </Button>
+                        <Link to="/">
+                            <Button variant="contained" color="secondary" className={classes.buttonNav}>
+                                Back
+                            </Button>
+                        </Link>
                         {this.state.formShowing && (
                             <PaletteMetaForm
                                 palettes={palettes}

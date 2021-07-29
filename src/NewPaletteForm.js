@@ -87,11 +87,9 @@ export default function NewPaletteForm(props, { maxColors = 20 }) {
         setOpen(false);
     };
 
-
-
-    function handleSubmit(newPaletteName) {
-        let newName = newPaletteName;
-        const newPalette = { paletteName: newName, colors, id: newName.toLowerCase().replace(/ /g, "-") }
+    function handleSubmit(newPalette) {
+        newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-");
+        newPalette.colors = colors;
         props.savePalette(newPalette);
         props.history.push('/');
     }
