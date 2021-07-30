@@ -15,16 +15,16 @@ const styles = {
             opacity: "1"
         },
         [sizes.down("lg")]: {
-            width: "25%",
+            width: "20%",
             height: props => (props.showingFullPalette ? "20%" : "50%"),
         },
         [sizes.down("md")]: {
             width: "50%",
-            height: props => (props.showingFullPalette ? "10%" : "50%"),
+            height: props => (props.showingFullPalette ? "10%" : "20%"),
         },
         [sizes.down("xs")]: {
             width: "100%",
-            height: props => (props.showingFullPalette ? "5%" : "50%"),
+            height: props => (props.showingFullPalette ? "5%" : "10%"),
         }
     },
     copyText: {
@@ -123,6 +123,9 @@ const styles = {
             padding: "1rem",
             textTransform: "uppercase",
             fontSize: "4rem",
+            [sizes.down("xs")]: {
+                fontSize: "4rem"
+            }
         },
         "& p": {
             fontSize: "2rem",

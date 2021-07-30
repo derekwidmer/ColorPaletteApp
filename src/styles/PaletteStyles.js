@@ -1,3 +1,5 @@
+import sizes from './sizes'
+
 const styles = {
     Palette: {
         height: "100vh",
@@ -36,6 +38,18 @@ const styles = {
             transition: "0.5s opacity ease",
             textDecoration: "none",
             color: "white"
+        },
+        [sizes.down("lg")]: {
+            width: "20%",
+            height: "50%"
+        },
+        [sizes.down("md")]: {
+            width: "50%",
+            height: "20%"
+        },
+        [sizes.down("xs")]: {
+            width: "100%",
+            height: "10%"
         }
     }
 }
