@@ -38,11 +38,7 @@ const styles = {
         display: "inline-block",
         margin: "0 auto",
         position: "relative",
-        // marginBottom: "-4px"
         verticalAlign: "top"
-    },
-    delete: {
-
     },
     deleteIcon: {
         color: "white",
@@ -56,7 +52,8 @@ const styles = {
         zIndex: 10,
         opacity: 0,
         borderBottomLeftRadius: "5px",
-        transition: "all 0.2s ease-in-out"
+        transition: "all 0.2s ease-in-out",
+        boxSizing: "initial"
     }
 }
 export default styles;

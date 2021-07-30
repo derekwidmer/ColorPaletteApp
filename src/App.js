@@ -18,6 +18,10 @@ function App() {
     });
   }
 
+  const deletePalette = (id) => {
+    updatePalettes(oldPalettes => (oldPalettes.filter(palette => palette.id !== id)))
+  }
+
   const savePalette = (newPalette) => {
     updatePalettes(oldPalettes => ([...oldPalettes, newPalette]))
   }
@@ -32,7 +36,7 @@ function App() {
 
   return (
     <Switch>
-      <Route exact path="/" render={routeProps => (<PaletteList palettes={palettes} {...routeProps} />)} />
+      <Route exact path="/" render={routeProps => (<PaletteList palettes={palettes} deletePalette={deletePalette} {...routeProps} />)} />
       <Route exact path="/palette/new" render={routeProps => (<NewPaletteForm {...routeProps} savePalette={savePalette} palettes={palettes} />)} />
       <Route
         exact path="/palette/:id"
