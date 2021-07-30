@@ -8,12 +8,9 @@ import SingleColorPalette from './SingleColorPalette';
 import NewPaletteForm from './NewPaletteForm';
 import React from 'react';
 
-
-
-
 function App() {
-
-  const [palettes, updatePalettes] = React.useState(seedColors)
+  const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"))
+  const [palettes, updatePalettes] = React.useState(savedPalettes || seedColors)
 
   const findPalette = (id) => {
     return palettes.find(function (palette) {
@@ -24,6 +21,14 @@ function App() {
   const savePalette = (newPalette) => {
     updatePalettes(oldPalettes => ([...oldPalettes, newPalette]))
   }
+
+  const syncLocalStorage = () => {
+    window.localStorage.setItem("palettes", JSON.stringify(palettes))
+  }
+
+  React.useEffect(() => {
+    syncLocalStorage()
+  });
 
   return (
     <Switch>
