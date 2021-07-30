@@ -1,12 +1,16 @@
 import sizes from './sizes'
-
+import bg from './bg.svg'
 const styles = {
     root: {
-        background: "blue",
         height: "100vh",
+        minWidth: "100vw",
         display: "flex",
         alignItems: "flex-start",
-        justifyContent: "center"
+        justifyContent: "center",
+        backgroundColor: "#002169",
+        backgroundImage: `url(${bg})`,
+        // background by SVGBackgrounds.com
+        overflow: "auto"
     },
     container: {
         width: "50%",
@@ -30,6 +34,9 @@ const styles = {
         "& a": {
             color: "white"
         }
+    },
+    heading: {
+        fontSize: "2rem"
     },
     palettes: {
         boxSizing: "border-box",

@@ -9,7 +9,7 @@ const styles = {
         cursor: "pointer",
         "&:hover svg": {
             opacity: 1
-        }
+        },
     },
     colors: {
         backgroundColor: "#dae1e4",
