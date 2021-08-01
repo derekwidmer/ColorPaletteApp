@@ -1,4 +1,4 @@
-import './App.css';
+import Page from './Page'
 import Palette from './Palette'
 import seedColors from './seedColors'
 import { generatePalette } from './colorHelpers'
@@ -38,47 +38,47 @@ function App() {
   return (
     <Route render={({ location }) => (
       <TransitionGroup>
-        <CSSTransition key={location.key} classNames='fade' timeout={500} >
+        <CSSTransition key={location.key} classNames='page' timeout={250} >
           <Switch location={location}>
             <Route
               exact path="/"
               render={routeProps => (
-                <div className="page">
+                <Page>
                   <PaletteList
                     palettes={palettes}
                     deletePalette={deletePalette} {...routeProps} />
-                </div>
+                </Page>
               )}
             />
             <Route
               exact path="/palette/new"
               render={routeProps => (
-                <div className="page">
+                <Page>
                   <NewPaletteForm {...routeProps}
                     savePalette={savePalette}
                     palettes={palettes} />
-                </div>
+                </Page>
               )}
             />
             <Route
               exact path="/palette/:id"
               render={routeProps => (
-                <div className="page">
+                <Page>
                   <Palette
                     palette={generatePalette(findPalette(routeProps.match.params.id))}
                   />
-                </div>
+                </Page>
               )}
             />
             <Route
               exact path="/palette/:paletteId/:colorId"
               render={routeProps => (
-                <div className="page">
+                <Page>
                   <SingleColorPalette
                     palette={generatePalette(findPalette(routeProps.match.params.paletteId))}
                     colorId={routeProps.match.params.colorId}
                   />
-                </div>
+                </Page>
               )}
             />
           </Switch>
