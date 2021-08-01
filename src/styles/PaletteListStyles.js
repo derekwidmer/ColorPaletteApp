@@ -52,10 +52,11 @@ const styles = {
         width: "100%",
         display: "grid",
         gridTemplateColumns: "repeat(3, 30%)",
-        gridGap: "5% 5%",
+        gridGap: "2.5rem 5%",
         [sizes.down("md")]: {
-            gridGap: "2% 10%",
+            gridGap: "2rem 10%",
             gridTemplateColumns: "repeat(2, 45%)",
+            paddingBottom: "2rem"
         },
         [sizes.down("xs")]: {
             gridTemplateColumns: "repeat(1, 100%)",
