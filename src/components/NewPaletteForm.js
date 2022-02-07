@@ -11,8 +11,8 @@ import DraggableColorList from './DraggableColorList';
 import { arrayMove } from 'react-sortable-hoc';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
-import seedColors from './seedColors'
-import styles from './styles/NewPaletteFormStyles'
+import seedColors from '../helpers/seedColors'
+import styles from '../styles/NewPaletteFormStyles'
 
 
 function NewPaletteForm(props, { maxColors = 20 }) {

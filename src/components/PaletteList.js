@@ -13,7 +13,7 @@ import Avatar from '@material-ui/core/Avatar';
 import CheckIcon from '@material-ui/icons/Check'
 import CloseIcon from '@material-ui/icons/Close'
 import { blue, red } from '@material-ui/core/colors';
-import styles from './styles/PaletteListStyles'
+import styles from '../styles/PaletteListStyles'
 
 class PaletteList extends Component {
     constructor(props) {

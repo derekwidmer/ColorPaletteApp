@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import QueueIcon from '@material-ui/icons/Queue';
 import { Button } from "@material-ui/core";
-import styles from './styles/PaletteFormNavStyles'
+import styles from '../styles/PaletteFormNavStyles'
 
 class PaletteFormNav extends Component {
     constructor(props) {
